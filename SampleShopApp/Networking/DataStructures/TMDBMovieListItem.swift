@@ -16,7 +16,7 @@ class TMDBMovieListResultItem {
     
     func addResults(from newObject: TMDBMovieListResultItem) {
     
-        if let newPage = newObject.currentPage, newPage > self.currentPage! {
+        if let newPage = newObject.currentPage {
             
             self.currentPage = newPage
             results.append(contentsOf: newObject.results)

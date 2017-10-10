@@ -8,11 +8,35 @@
 
 import Foundation
 
+struct TMDBMovieListCellViewModel {
+    
+    var title: String?
+    var popularity: String?
+    var imageUrl: URL?
+
+    init(with movieItem: TMDBMovieItem) {
+        
+        title = movieItem.title
+        popularity = movieItem.popularity
+        
+        if let posterPath = movieItem.posterPath {
+            
+            let urlString = kBaseImageURLPath + posterPath
+            imageUrl = URL(string: urlString)
+        }
+    }
+}
+
 
 class TMDBMoviesListViewModel {
     
     var resultItem = TMDBMovieListResultItem()
 
+    func getMovieCellModel(for indexPath: IndexPath) -> TMDBMovieListCellViewModel {
+    
+        return TMDBMovieListCellViewModel(with: resultItem.results[indexPath.row])
+    }
+    
     func getMoviesList(with completionBlock: @escaping CompletionBlock) -> URLSessionDataTask? {
         
         let movieService = TMDBMoviesService(with: .moviesList)

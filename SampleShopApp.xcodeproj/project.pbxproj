@@ -15,6 +15,8 @@
 		8607006D1F8D37E400193539 /* TMDBMoviesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8607006C1F8D37E400193539 /* TMDBMoviesListViewModel.swift */; };
 		8607006F1F8D37FD00193539 /* TMDBMovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8607006E1F8D37FD00193539 /* TMDBMovieDetailsViewModel.swift */; };
 		860700711F8D39BB00193539 /* Dictionary+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860700701F8D39BB00193539 /* Dictionary+Additions.swift */; };
+		860700731F8D41EC00193539 /* TMDBMovieListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860700721F8D41EC00193539 /* TMDBMovieListCell.swift */; };
+		860700761F8D441400193539 /* TMDBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860700751F8D441400193539 /* TMDBConstants.swift */; };
 		862D00EC1F8BE029002DE4A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 862D00EA1F8BE029002DE4A6 /* Main.storyboard */; };
 		862D00EE1F8BE029002DE4A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 862D00ED1F8BE029002DE4A6 /* Assets.xcassets */; };
 		862D00F11F8BE029002DE4A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 862D00EF1F8BE029002DE4A6 /* LaunchScreen.storyboard */; };
@@ -67,6 +69,8 @@
 		8607006C1F8D37E400193539 /* TMDBMoviesListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDBMoviesListViewModel.swift; sourceTree = "<group>"; };
 		8607006E1F8D37FD00193539 /* TMDBMovieDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDBMovieDetailsViewModel.swift; sourceTree = "<group>"; };
 		860700701F8D39BB00193539 /* Dictionary+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Additions.swift"; sourceTree = "<group>"; };
+		860700721F8D41EC00193539 /* TMDBMovieListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDBMovieListCell.swift; sourceTree = "<group>"; };
+		860700751F8D441400193539 /* TMDBConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDBConstants.swift; sourceTree = "<group>"; };
 		862D00E31F8BE028002DE4A6 /* SampleShopApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleShopApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		862D00EB1F8BE029002DE4A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		862D00ED1F8BE029002DE4A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -167,6 +171,7 @@
 			children = (
 				8607006C1F8D37E400193539 /* TMDBMoviesListViewModel.swift */,
 				860700681F8D36F400193539 /* TMDBMoviesListViewController.swift */,
+				860700721F8D41EC00193539 /* TMDBMovieListCell.swift */,
 			);
 			path = MoviesList;
 			sourceTree = "<group>";
@@ -186,6 +191,14 @@
 				860700661F8D36B000193539 /* TMDBBaseViewController.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		860700741F8D43FD00193539 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				860700751F8D441400193539 /* TMDBConstants.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		862D00DA1F8BE028002DE4A6 = {
@@ -213,6 +226,7 @@
 		862D00E51F8BE028002DE4A6 /* SampleShopApp */ = {
 			isa = PBXGroup;
 			children = (
+				860700741F8D43FD00193539 /* Utils */,
 				8607005D1F8D35D600193539 /* Common */,
 				8607005F1F8D35D600193539 /* UI */,
 				860700601F8D35D600193539 /* Extensions */,
@@ -596,9 +610,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				860700761F8D441400193539 /* TMDBConstants.swift in Sources */,
 				8684D39B1F8C02C300EC67BC /* TMDBMovieDetailsItem.swift in Sources */,
 				8684D37D1F8BF1D300EC67BC /* TMDBResponseHandler.swift in Sources */,
 				8684D38D1F8BF4A200EC67BC /* GoRequestHandler.swift in Sources */,
+				860700731F8D41EC00193539 /* TMDBMovieListCell.swift in Sources */,
 				8684D3951F8BF4D300EC67BC /* TMDBMovieDetailsParser.swift in Sources */,
 				860700671F8D36B000193539 /* TMDBBaseViewController.swift in Sources */,
 				8684D38F1F8BF4A200EC67BC /* GoURLSessionService.swift in Sources */,
