@@ -92,6 +92,7 @@
                     <navigationItem key="navigationItem" id="q5o-MN-zI5"/>
                     <connections>
                         <outlet property="tableView" destination="Miw-tP-OEh" id="Yl9-ws-0Lt"/>
+                        <outlet property="tableViewBottomMarginConstraint" destination="TQ7-Xt-aAu" id="Srl-Vo-LPD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

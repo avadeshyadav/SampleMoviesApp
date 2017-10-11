@@ -8,9 +8,15 @@
 
 import UIKit
 
+let kLoaderViewTag = 12121
+let kLoaderViewHeight: CGFloat = 40
+
 class TMDBMoviesListViewController: TMDBBaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableViewBottomMarginConstraint: NSLayoutConstraint!
+
+    var refreshControl: UIRefreshControl?
     
     let model = TMDBMoviesListViewModel()
     
@@ -25,12 +31,32 @@ class TMDBMoviesListViewController: TMDBBaseViewController {
         self.title = "Movies List"
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
+        configureRefreshControl(on: tableView)
+    }
+    
+    func configureRefreshControl(on tableView: UITableView) {
+    
+        refreshControl = UIRefreshControl()
+        self.tableView.addSubview(refreshControl!)
+        refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl?.addTarget(self, action: #selector(refreshMoviesList), for: .valueChanged)
+    }
+    
+    func refreshMoviesList() {
+    
+        cancelAllOnGoingCalls()
+        model.isUserRefreshingList = true
+        refreshControl?.beginRefreshing()
+        loadMovies()
     }
     
     func loadMovies() {
         
         let task = self.model.getMoviesList(with: { [weak self] (listResult) in
             
+            self?.refreshControl?.endRefreshing()
+            self?.isLoadingNextPageResults(false)
+
             if let result = listResult as? TMDBMovieListResultItem {
                 print("Received results: \(result.results.count)")
                 self?.tableView.reloadData()
@@ -61,5 +87,64 @@ extension TMDBMoviesListViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+    }
+    
+    //MARK: Lazy loading functionality
+    func isLoadingNextPageResults(_ isLoading: Bool) {
+       
+        model.isLoadingNextPageResults = isLoading
+       
+        if isLoading {
+            addLoaderViewForNextResults()
+            tableViewBottomMarginConstraint.constant = kLoaderViewHeight
+        }
+        else {
+            tableViewBottomMarginConstraint.constant = 0
+            let view = self.view.viewWithTag(kLoaderViewTag)
+            view?.removeFromSuperview()
+        }
+        
+        self.view.layoutIfNeeded()
+    }
+    
+    // MARK: Private Methods
+    
+    func addLoaderViewForNextResults() {
+        let view = UIView(frame: CGRect(x: 0, y: self.view.frame.size.height - kLoaderViewHeight, width: self.view.frame.size.width, height: kLoaderViewHeight))
+        view.backgroundColor = UIColor.lightGray
+        view.tag = kLoaderViewTag
+        
+        let indicatorView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        indicatorView.center = CGPoint(x: view.frame.size.width / 2, y: view.frame.size.height / 2)
+        indicatorView.startAnimating()
+        indicatorView.color = UIColor.darkGray
+        indicatorView.isHidden = false
+        view.addSubview(indicatorView)
+        
+        self.view.addSubview(view)
+    }
+    
+    // MARK: Overriden Methods
+    
+    func loadNextPageResults() {
+        loadMovies()
+    }
+    
+    // MARK: UIScrollViewDelegate
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+       
+        guard  model.canLoadNextPageResults() else {
+            return
+        }
+        
+        let margin: CGFloat = 30
+        let heightToLoadNextPage: CGFloat = scrollView.contentSize.height + margin
+        let currentPosition: CGFloat = scrollView.contentOffset.y + scrollView.frame.size.height
+        
+        if (currentPosition >= heightToLoadNextPage) {
+            isLoadingNextPageResults(true)
+            loadNextPageResults()
+        }
     }
 }
