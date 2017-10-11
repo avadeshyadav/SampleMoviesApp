@@ -10,12 +10,24 @@ import UIKit
 
 class TMDBMovieDetailsViewController: TMDBBaseViewController {
 
+    @IBOutlet weak var tableView: UITableView!
     let model = TMDBMovieDetailsViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        doInitialConfigurations()
+    }
+    
+    //MARK: Public Methods
+    func loadMovieDetails(with movieId: String) {
+        model.currentMovieId = movieId
+        loadMovieDetails()
+    }
+    
+    //MARK: Private Methods
+    func doInitialConfigurations() {
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     func loadMovieDetails() {
@@ -34,4 +46,25 @@ class TMDBMovieDetailsViewController: TMDBBaseViewController {
 
     }
 
+}
+
+
+//MARK:- TableView Functionality
+extension TMDBMovieDetailsViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    //MARK: Table View Delegate and Data source Methods
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TMDBMovieDescriptionCell", for: indexPath) as! TMDBMovieListCell
+//        cell.configureCell(with: model.getMovieCellModel(for: indexPath))
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
 }

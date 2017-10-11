@@ -14,6 +14,9 @@ class TMDBMovieListCell: UITableViewCell {
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var movieTitleLabel: UILabel!
     @IBOutlet weak var popularityLabel: UILabel!
+    @IBOutlet weak var containerView: UIView!
+
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,11 +27,14 @@ class TMDBMovieListCell: UITableViewCell {
     
         movieTitleLabel.text = model.title
         popularityLabel.text = model.popularity
-        posterImageView.sd_setImage(with: model.imageUrl, completed: nil)
+        
+        posterImageView.__sd_setImage(with:model.imageUrl, placeholderImage: UIImage(named: "placeHolder"), completed: nil)
     }
     
     //MARK: Private Methods
     func doInitialConfiguratinos() {
-        
+        //        posterImageView.addShadowWithColor(UIColor.darkGray, offset: CGSize.zero)
+        containerView.makeCornerRadiusWithValue(4.0, borderColor: UIColor.lightGray)
+        posterImageView.makeCornerRadiusWithValue(2.0)
     }
 }

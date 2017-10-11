@@ -17,7 +17,10 @@ struct TMDBMovieListCellViewModel {
     init(with movieItem: TMDBMovieItem) {
         
         title = movieItem.title
-        popularity = movieItem.popularity
+        
+        if let value =  movieItem.popularity {
+            popularity = "Popularity: " + String(format: "%.2f", value)
+        }
         
         if let posterPath = movieItem.posterPath {
             
@@ -39,11 +42,20 @@ class TMDBMoviesListViewModel {
         return TMDBMovieListCellViewModel(with: resultItem.results[indexPath.row])
     }
     
+    func getMovieId(for indexPath: IndexPath) -> String? {
+    
+        if indexPath.row >= resultItem.results.count {
+            return nil
+        }
+        
+        return resultItem.results[indexPath.row].movieId
+    }
+    
     func canLoadNextPageResults() -> Bool {
     
         if isLoadingNextPageResults { return false }
         
-        if let currentPage = resultItem.currentPage, let totalPage = resultItem.totalPages, currentPage + 1 > totalPage {
+        if let currentPage = resultItem.currentPage, let totalPages = resultItem.totalPages, currentPage + 1 > totalPages {
             return false
         }
         

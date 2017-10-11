@@ -20,14 +20,25 @@ class TMDBMoviesListViewController: TMDBBaseViewController {
     
     let model = TMDBMoviesListViewModel()
     
+    //MARK: Overridden Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         doInitialConfigurations()
         loadMovies()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let detailsController = segue.destination as? TMDBMovieDetailsViewController, let movieId = sender as? String {
+            detailsController.loadMovieDetails(with: movieId)
+        }
+    }
+
+    
     //MARK: Private Methods
     func doInitialConfigurations() {
+        self.edgesForExtendedLayout = []
         self.title = "Movies List"
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -86,7 +97,8 @@ extension TMDBMoviesListViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let movieId = model.getMovieId(for: indexPath)
+        self.performSegue(withIdentifier: "PushMovieDetailsScreen", sender: movieId)
     }
     
     //MARK: Lazy loading functionality

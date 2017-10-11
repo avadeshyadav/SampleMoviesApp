@@ -28,7 +28,7 @@ struct TMDBMovieItem {
    
     var posterPath: String?
     var title: String?
-    var popularity: String?
+    var popularity: Double?
     var movieId: String?
     
     init(with dict: Dictionary<String, Any>) {
@@ -36,7 +36,7 @@ struct TMDBMovieItem {
         self.title = dict["title"] as? String
         self.movieId = dict["id"] as? String
         self.posterPath = dict["poster_path"] as? String
-        self.popularity = dict["popularity"] as? String
+        self.popularity = dict["popularity"] as? Double
     }
 }
 
