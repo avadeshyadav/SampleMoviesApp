@@ -10,15 +10,16 @@ import UIKit
 
 class TMDBMovieDescriptionCell: UITableViewCell {
 
+    @IBOutlet weak var infoHeaderLabel: UILabel!
+    @IBOutlet weak var infoLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    func configureCell(with model: TMDBHeaderDescriptionCellViewModel) {
+        
+        infoHeaderLabel.text = model.headerText
+        infoLabel.text = model.descriptionText
     }
-
 }

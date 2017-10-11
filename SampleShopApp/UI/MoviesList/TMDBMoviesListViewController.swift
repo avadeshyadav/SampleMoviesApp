@@ -33,8 +33,10 @@ class TMDBMoviesListViewController: TMDBBaseViewController {
         if let detailsController = segue.destination as? TMDBMovieDetailsViewController, let movieId = sender as? String {
             detailsController.loadMovieDetails(with: movieId)
         }
+        else if let webVC = segue.destination as? TMDBWebViewController {
+            webVC.loadWebPage(with: kBookingSimulationURLString)
+        }
     }
-
     
     //MARK: Private Methods
     func doInitialConfigurations() {
@@ -82,7 +84,7 @@ class TMDBMoviesListViewController: TMDBBaseViewController {
 }
 
 //MARK:- TableView Functionality
-extension TMDBMoviesListViewController: UITableViewDelegate, UITableViewDataSource {
+extension TMDBMoviesListViewController: UITableViewDelegate, UITableViewDataSource, TMDBMovieListCellDelegate {
 
     //MARK: Table View Delegate and Data source Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -93,6 +95,7 @@ extension TMDBMoviesListViewController: UITableViewDelegate, UITableViewDataSour
     
         let cell = tableView.dequeueReusableCell(withIdentifier: "TMDBMovieListCell", for: indexPath) as! TMDBMovieListCell
         cell.configureCell(with: model.getMovieCellModel(for: indexPath))
+        cell.delegate = self
         return cell
     }
     
@@ -158,5 +161,11 @@ extension TMDBMoviesListViewController: UITableViewDelegate, UITableViewDataSour
             isLoadingNextPageResults(true)
             loadNextPageResults()
         }
+    }
+    
+    //MARK: TMDBMovieListCellDelegate Methods
+    func didSelectBookNow(in cell: TMDBMovieListCell) {
+        //Get index here, and get selected movie id to book
+        self.performSegue(withIdentifier: "PushBookNowWebViewFromList", sender: nil)
     }
 }

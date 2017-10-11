@@ -34,7 +34,11 @@ struct TMDBMovieItem {
     init(with dict: Dictionary<String, Any>) {
         
         self.title = dict["title"] as? String
-        self.movieId = dict["id"] as? String
+       
+        if let value = dict["id"] as? Int64 {
+            self.movieId = "\(value)"
+        }
+        
         self.posterPath = dict["poster_path"] as? String
         self.popularity = dict["popularity"] as? Double
     }

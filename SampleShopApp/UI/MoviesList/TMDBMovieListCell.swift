@@ -9,6 +9,10 @@
 import UIKit
 import SDWebImage
 
+protocol TMDBMovieListCellDelegate: class {
+    func didSelectBookNow(in cell: TMDBMovieListCell)
+}
+
 class TMDBMovieListCell: UITableViewCell {
 
     @IBOutlet weak var posterImageView: UIImageView!
@@ -16,7 +20,7 @@ class TMDBMovieListCell: UITableViewCell {
     @IBOutlet weak var popularityLabel: UILabel!
     @IBOutlet weak var containerView: UIView!
 
-    
+    weak var delegate: TMDBMovieListCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,9 +35,13 @@ class TMDBMovieListCell: UITableViewCell {
         posterImageView.__sd_setImage(with:model.imageUrl, placeholderImage: UIImage(named: "placeHolder"), completed: nil)
     }
     
+    //MARK: IBAction Methods
+    @IBAction func actionBookNow(_ sender: Any) {
+        self.delegate?.didSelectBookNow(in: self)
+    }
+    
     //MARK: Private Methods
     func doInitialConfiguratinos() {
-        //        posterImageView.addShadowWithColor(UIColor.darkGray, offset: CGSize.zero)
         containerView.makeCornerRadiusWithValue(4.0, borderColor: UIColor.lightGray)
         posterImageView.makeCornerRadiusWithValue(2.0)
     }

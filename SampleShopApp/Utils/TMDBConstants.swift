@@ -9,3 +9,4 @@
 import Foundation
 
 let kBaseImageURLPath: String = "https://image.tmdb.org/t/p/w320"
+let kBookingSimulationURLString: String = "https://www.cathaycineplexes.com.sg/"

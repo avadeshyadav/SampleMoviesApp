@@ -13,8 +13,8 @@ struct TMDBMovieDetailsItem {
     var title: String?
     var overView: String?
     var posterPath: String?
-    var popularity: String?
-    var movieId: String?
+    var popularity: Double?
+    var movieId: Int64?
     var generes: Array<String>?
     var languages: Array<String>?
     var releaseDate: String?
@@ -25,8 +25,8 @@ struct TMDBMovieDetailsItem {
         title = dictionary["title"] as? String
         overView = dictionary["overview"] as? String
         posterPath = dictionary["poster_path"] as? String
-        popularity = dictionary["popularity"] as? String
-        movieId = dictionary["id"] as? String
+        popularity = dictionary["popularity"] as? Double
+        movieId = dictionary["id"] as? Int64
         releaseDate = dictionary["release_date"] as? String
         runTime = dictionary["runtime"] as? Int
         
@@ -53,7 +53,7 @@ struct TMDBMovieDetailsItem {
                 }
             }
             
-            languages = genresStrings
+            generes = genresStrings
         }
     }
 }
