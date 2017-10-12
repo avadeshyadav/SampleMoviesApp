@@ -50,6 +50,22 @@ class TMDBMovieDetailsViewController: TMDBBaseViewController {
         bookNowContainerView.addShadowWithColor(UIColor.lightGray, offset: .zero)
     }
     
+    func showErrorAlert(with message: String?) {
+        
+        let alertViewVC = UIAlertController(title: "Ooops!", message: message ?? kDefaultServerErrorMessage, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Retry", style: .default, handler: { [unowned self] (alert) in
+            self.loadMovieDetails()
+        })
+        
+        let backAction = UIAlertAction(title: "Back", style: .cancel, handler: { [unowned self] (alert) in
+            self.navigationController?.popViewController(animated: true)
+        })
+
+        alertViewVC.addAction(backAction)
+        alertViewVC.addAction(action)
+        self.present(alertViewVC, animated: true, completion: nil)
+    }
+    
     func loadMovieDetails() {
     
         activityIndicatorView?.startAnimating()
@@ -61,8 +77,10 @@ class TMDBMovieDetailsViewController: TMDBBaseViewController {
             if let _ = result as? TMDBMovieDetailsItem {
                 self?.tableView.reloadData()
             }
+            else if let error = result as? GoCustomError {
+                self?.showErrorAlert(with: error.message)
+            }
             else {
-                //Need to show error alert/message here and then return from here
                 self?.navigationController?.popViewController(animated: true)
             }
         }

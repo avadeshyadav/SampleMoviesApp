@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Reachability
 
 @objc enum RequestSerializerType: Int {
     case HTTP, JSON, propertyList
@@ -221,14 +222,14 @@ class GoBaseNetworkService: NSObject {
         
         guard let receivedData = responseData else {
             
-//            let internetReachability = Reachability.forInternetConnection()
-//            if internetReachability?.isReachable() == false {
-//                let failureReason = "You appear to be offline. Please check your internet connection."
-//                self.handleInvalidResponseWithDetails(failureReason)
-//            }
-//            else {
+            let internetReachability = Reachability.init(hostName: kBaseServerURL)
+            if internetReachability?.isReachable() == false {
+                let failureReason = "You appear to be offline. Please check your internet connection."
+                self.handleInvalidResponseWithDetails(failureReason)
+            }
+            else {
                 self.handleInvalidResponseWithDetails(error)
-           // }
+            }
             return
         }
         

@@ -8,6 +8,7 @@ target 'SampleShopApp' do
   # Pods for SampleShopApp
   
   pod 'SDWebImage', '~> 4.0'
+  pod 'Reachability'
 
   target 'SampleShopAppTests' do
     inherit! :search_paths

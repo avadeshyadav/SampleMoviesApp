@@ -56,7 +56,7 @@ class TMDBMoviesService: GoBaseNetworkService {
 
 class TMDBURLBuilder {
 
-    lazy var baseServerURL: String = "https://api.themoviedb.org"
+    lazy var baseServerURL: String = kBaseServerURL
     let apiVersionV3: String = "/3/"
     
     func getMoviesListURL() -> String {
