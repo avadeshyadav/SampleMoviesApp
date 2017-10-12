@@ -24,7 +24,6 @@ class TMDBBaseViewController: UIViewController {
             onGoingNetworkCalls.add(call)
         }
     }
-    // https://image.tmdb.org/t/p/w320/WLQN5aiQG8wc9SeKwixW7pAR8K.jpg
     
     func cancelAllOnGoingCalls() {
         

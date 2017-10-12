@@ -12,7 +12,7 @@ class TMDBMovieListResultItem {
     
     var results = Array<TMDBMovieItem>()
     var currentPage: Int? = 0
-    var totalPages: Int64? = 0
+    var totalPages: Int? = 0
     
     func addResults(from newObject: TMDBMovieListResultItem) {
     
@@ -36,7 +36,7 @@ struct TMDBMovieItem {
         
         self.title = dict["title"] as? String
        
-        if let value = dict["id"] as? Int64 {
+        if let value = dict["id"] as? Int {
             self.movieId = "\(value)"
         }
         
