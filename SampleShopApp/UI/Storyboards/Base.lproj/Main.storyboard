@@ -326,15 +326,15 @@
                                             <outlet property="infoLabel" destination="HKn-0g-teK" id="Uye-jc-VwD"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TMDBBottomEndDummyCell" id="QEN-vQ-IIb">
-                                        <rect key="frame" x="0.0" y="403" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TMDBBottomEndDummyCell" rowHeight="45" id="QEN-vQ-IIb">
+                                        <rect key="frame" x="0.0" y="403" width="375" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QEN-vQ-IIb" id="yqt-tw-aGq">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n41-Wu-ad6">
-                                                    <rect key="frame" x="157" y="21" width="60" height="1"/>
+                                                    <rect key="frame" x="157" y="22" width="60" height="1"/>
                                                     <color key="backgroundColor" red="0.46666666670000001" green="0.46666666670000001" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="Qgy-Vo-AUl"/>
@@ -346,7 +346,7 @@
                                                 <constraint firstItem="n41-Wu-ad6" firstAttribute="centerX" secondItem="yqt-tw-aGq" secondAttribute="centerX" id="acL-Iu-ssy"/>
                                                 <constraint firstItem="n41-Wu-ad6" firstAttribute="centerY" secondItem="yqt-tw-aGq" secondAttribute="centerY" id="hXW-f8-LGe"/>
                                                 <constraint firstAttribute="bottom" secondItem="n41-Wu-ad6" secondAttribute="bottom" constant="22" id="ieL-PC-SJF"/>
-                                                <constraint firstItem="n41-Wu-ad6" firstAttribute="top" secondItem="yqt-tw-aGq" secondAttribute="top" constant="21" id="jc0-Ol-DTR"/>
+                                                <constraint firstItem="n41-Wu-ad6" firstAttribute="top" secondItem="yqt-tw-aGq" secondAttribute="top" constant="22" id="jc0-Ol-DTR"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
