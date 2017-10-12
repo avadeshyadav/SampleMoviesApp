@@ -17,6 +17,10 @@ class TMDBMoviesListParser: TMDBBaseParser {
             return nil
         }
         
+        if let errors = rawDict["errors"] as? Array<String> {
+            return GoCustomError.customErrorWithMessage(errors.joined(), errorCode: "ReceivedServerError", error: nil)
+        }
+        
         let resultObject = TMDBMovieListResultItem()
         resultObject.currentPage = rawDict["page"] as? Int
         resultObject.totalPages = rawDict["total_pages"] as? Int

@@ -11,8 +11,8 @@ import Foundation
 
 class TMDBResponseHandler: BaseResponseHandler {
     
-    let kErrorKeyName = "error"
-    let kErrorCodeKeyName = "code"
+    let kErrorKeyName = "status_message"
+    let kErrorCodeKeyName = "status_code"
     
     var currentApiType: MoviesAPIType = .none
     

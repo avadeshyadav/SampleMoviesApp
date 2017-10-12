@@ -195,7 +195,10 @@ class GoBaseNetworkService: NSObject {
         
         let result = reponseHandler?.parsedObject(from: response)
         
-        if let _ = result {
+        if let customError = result as? GoCustomError {//This condition is put here, just in case for old backend apis, error is coming with 200 status code, in success block, so the corresponding parser will return GoCustomError instance, and failure block will be called.
+            callFailureBlockOnMainQueue(with: customError)
+        }
+        else if let _ = result {
             callSuccessBlockOnMainQueue(with: result)
         }
         else {

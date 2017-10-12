@@ -17,6 +17,10 @@ class TMDBMovieDetailsParser: TMDBBaseParser {
             return nil
         }
         
+        if let errorCode = rawDict["status_code"], let errorMessage = rawDict["status_message"] as? String {
+            return GoCustomError.customErrorWithMessage(errorMessage, errorCode: String(describing: errorCode), error: nil)
+        }
+        
         return TMDBMovieDetailsItem(with: rawDict)
     }
 }
