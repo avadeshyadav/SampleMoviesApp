@@ -41,9 +41,9 @@ class MovieDetailsModelTests: XCTestCase {
         
         let movieDetailsItem = TMDBMovieDetailsItem(with: dataProvider.getValidJSONWithMissingOptionalKeys())
         var cellTypes = model.getCellTypes(from: movieDetailsItem)
-        let allCellTypes: Array<MovieDetailsCellTypes> = [.imageAndDescription, .endDummyCell]
+        let mandatoryCellTypes: Array<MovieDetailsCellTypes> = [.imageAndDescription, .endDummyCell]
         
-        for cellType in allCellTypes {
+        for cellType in mandatoryCellTypes {
             
             if let index = cellTypes.index(of: cellType) {
                 cellTypes.remove(at: index)
