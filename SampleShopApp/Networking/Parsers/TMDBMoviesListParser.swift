@@ -18,7 +18,7 @@ class TMDBMoviesListParser: TMDBBaseParser {
         }
         
         let resultObject = TMDBMovieListResultItem()
-        resultObject.currentPage = rawDict["page"] as? Int64
+        resultObject.currentPage = rawDict["page"] as? Int
         resultObject.totalPages = rawDict["total_pages"] as? Int64
         
         if let rawResults = rawDict["results"] as? Array<Dictionary<String, Any>> {

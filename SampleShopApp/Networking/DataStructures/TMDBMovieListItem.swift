@@ -11,7 +11,7 @@ import Foundation
 class TMDBMovieListResultItem {
     
     var results = Array<TMDBMovieItem>()
-    var currentPage: Int64? = 1
+    var currentPage: Int? = 0
     var totalPages: Int64? = 0
     
     func addResults(from newObject: TMDBMovieListResultItem) {
