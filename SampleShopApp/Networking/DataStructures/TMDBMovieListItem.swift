@@ -19,6 +19,7 @@ class TMDBMovieListResultItem {
         if let newPage = newObject.currentPage {
             
             self.currentPage = newPage
+            self.totalPages = newObject.totalPages
             results.append(contentsOf: newObject.results)
         }
     }
@@ -44,4 +45,3 @@ struct TMDBMovieItem {
     }
 }
 
-//https://image.tmdb.org/t/p/w320/WLQN5aiQG8wc9SeKwixW7pAR8K.jpg

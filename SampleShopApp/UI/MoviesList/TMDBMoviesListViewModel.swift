@@ -51,6 +51,10 @@ class TMDBMoviesListViewModel {
         return resultItem.results[indexPath.row].movieId
     }
     
+    func isLoadingResultsFirstTime() -> Bool {
+        return resultItem.results.count == 0
+    }
+    
     func canLoadNextPageResults() -> Bool {
     
         if isLoadingNextPageResults { return false }
@@ -72,11 +76,12 @@ class TMDBMoviesListViewModel {
                 self?.isUserRefreshingList = false
             }
             
-            completionBlock(error as AnyObject?)
+            completionBlock(error)
             
         }) { [weak self] (data) in
             
             guard let result = data as? TMDBMovieListResultItem else {
+                completionBlock(nil)
                 return
             }
             
@@ -88,7 +93,7 @@ class TMDBMoviesListViewModel {
                 self?.resultItem.addResults(from: result)
             }
             
-            completionBlock(data as AnyObject)
+            completionBlock(data)
         }
     }
     

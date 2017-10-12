@@ -78,23 +78,29 @@ class TMDBMovieDetailsViewModel {
         
         return movieService.getMovieDetails(with: currentMovieId!, onError: { (error) in
             
-            completionBlock(error as AnyObject?)
+            completionBlock(error)
             
         }) { [weak self] (data) in
             
-            if let details = data as? TMDBMovieDetailsItem {
-                self?.movieDetails = details
-                self?.prepareCellTypes(from: details)
+            guard let weakSelf = self else {
+                completionBlock(nil)
+                return
             }
             
-            completionBlock(data as AnyObject)
+            if let details = data as? TMDBMovieDetailsItem {
+                weakSelf.movieDetails = details
+                weakSelf.cellTypes = weakSelf.getCellTypes(from: details)
+            }
+            
+            completionBlock(data)
         }
     }
     
     //MARK: Private Methods
-    func prepareCellTypes(from details: TMDBMovieDetailsItem)  {
+    func getCellTypes(from details: TMDBMovieDetailsItem) -> Array<MovieDetailsCellTypes> {
         
-        cellTypes.removeAll()
+        var cellTypes = Array<MovieDetailsCellTypes>()
+        
         cellTypes.append(.imageAndDescription)
         
         if let languages = details.languages, languages.count > 0 {
@@ -110,7 +116,7 @@ class TMDBMovieDetailsViewModel {
         }
         
         cellTypes.append(.endDummyCell)
+        
+        return cellTypes
     }
-
-    
 }

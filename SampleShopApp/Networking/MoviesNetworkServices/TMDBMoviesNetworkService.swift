@@ -14,7 +14,7 @@ enum MoviesAPIType : Int {
     case none
 }
 
-typealias CompletionBlock = (AnyObject?) -> Void
+typealias CompletionBlock = (Any?) -> Void
 
 
 class TMDBMoviesService: GoBaseNetworkService {

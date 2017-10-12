@@ -55,13 +55,13 @@
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeHolder" translatesAutoresizingMaskIntoConstraints="NO" id="2cr-It-xFH">
                                                             <rect key="frame" x="5" y="5" width="130" height="173"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="173" id="6QC-X6-kuR"/>
                                                                 <constraint firstAttribute="width" constant="130" id="R2s-3t-sOx"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="height" constant="183" id="0Lp-oI-dPE"/>
                                                         <constraint firstItem="2cr-It-xFH" firstAttribute="leading" secondItem="CNr-0N-cLg" secondAttribute="leading" constant="5" id="TgD-kN-3hF"/>
                                                         <constraint firstAttribute="bottom" secondItem="2cr-It-xFH" secondAttribute="bottom" constant="5" id="WuY-O2-lj0"/>
                                                         <constraint firstAttribute="width" constant="140" id="bMy-aa-sAk"/>
@@ -126,17 +126,23 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="mNs-1f-Bt8"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="vEB-Oi-nle">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="vEB-Oi-nle" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="LyI-7u-0jC"/>
                             <constraint firstAttribute="trailing" secondItem="Miw-tP-OEh" secondAttribute="trailing" id="LzN-VK-Kfs"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Miw-tP-OEh" secondAttribute="bottom" id="TQ7-Xt-aAu"/>
+                            <constraint firstItem="vEB-Oi-nle" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="UF1-Ky-zXu"/>
                             <constraint firstItem="Miw-tP-OEh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="XYp-I0-ru1"/>
                             <constraint firstItem="Miw-tP-OEh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="vbj-D5-Yoo"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="q5o-MN-zI5"/>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="vEB-Oi-nle" id="idE-mU-Ig9"/>
                         <outlet property="tableView" destination="Miw-tP-OEh" id="Yl9-ws-0Lt"/>
                         <outlet property="tableViewBottomMarginConstraint" destination="TQ7-Xt-aAu" id="Srl-Vo-LPD"/>
                         <segue destination="eoh-5l-LFc" kind="push" identifier="PushMovieDetailsScreen" id="dP7-hl-ry8"/>

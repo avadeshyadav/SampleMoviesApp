@@ -14,6 +14,7 @@ let kLoaderViewHeight: CGFloat = 40
 class TMDBMoviesListViewController: TMDBBaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var tableViewBottomMarginConstraint: NSLayoutConstraint!
 
     var refreshControl: UIRefreshControl?
@@ -63,19 +64,34 @@ class TMDBMoviesListViewController: TMDBBaseViewController {
         loadMovies()
     }
     
+    func showErrorAlert(with message: String?) {
+        
+        let alertViewVC = UIAlertController(title: "Ooops!", message: message ?? kDefaultServerErrorMessage, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Retry", style: .default, handler: { [unowned self] (alert) in
+            self.loadMovies()
+        })
+        alertViewVC.addAction(action)
+        self.present(alertViewVC, animated: true, completion: nil)
+    }
+    
     func loadMovies() {
+        
+        let isLoadingFirstTime = model.isLoadingResultsFirstTime()
+        if isLoadingFirstTime {
+            activityIndicatorView?.startAnimating()
+        }
         
         let task = self.model.getMoviesList(with: { [weak self] (listResult) in
             
+            self?.activityIndicatorView?.stopAnimating()
             self?.refreshControl?.endRefreshing()
             self?.isLoadingNextPageResults(false)
-
-            if let result = listResult as? TMDBMovieListResultItem {
-                print("Received results: \(result.results.count)")
+            
+            if let _ = listResult as? TMDBMovieListResultItem {
                 self?.tableView.reloadData()
             }
-            else {
-                print("No results received")
+            else if isLoadingFirstTime {
+                self?.showErrorAlert(with: (listResult as? GoCustomError)?.message)
             }
         })
         

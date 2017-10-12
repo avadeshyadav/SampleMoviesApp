@@ -10,3 +10,6 @@ import Foundation
 
 let kBaseImageURLPath: String = "https://image.tmdb.org/t/p/w320"
 let kBookingSimulationURLString: String = "https://www.cathaycineplexes.com.sg/"
+
+
+let kDefaultServerErrorMessage: String = "Unable to connect to server. Please try again."

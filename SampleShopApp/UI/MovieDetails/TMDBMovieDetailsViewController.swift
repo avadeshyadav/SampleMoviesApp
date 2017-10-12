@@ -59,11 +59,11 @@ class TMDBMovieDetailsViewController: TMDBBaseViewController {
             self?.activityIndicatorView?.stopAnimating()
 
             if let _ = result as? TMDBMovieDetailsItem {
-                print("Movie details received")
                 self?.tableView.reloadData()
             }
             else {
-                print("No results received show error here")
+                //Need to show error alert/message here and then return from here
+                self?.navigationController?.popViewController(animated: true)
             }
         }
         
