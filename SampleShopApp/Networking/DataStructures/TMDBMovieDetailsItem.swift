@@ -14,7 +14,7 @@ struct TMDBMovieDetailsItem {
     var overView: String?
     var posterPath: String?
     var popularity: Double?
-    var movieId: Int64?
+    var movieId: Int?
     var generes: Array<String>?
     var languages: Array<String>?
     var releaseDate: String?
@@ -26,7 +26,7 @@ struct TMDBMovieDetailsItem {
         overView = dictionary["overview"] as? String
         posterPath = dictionary["poster_path"] as? String
         popularity = dictionary["popularity"] as? Double
-        movieId = dictionary["id"] as? Int64
+        movieId = dictionary["id"] as? Int
         releaseDate = dictionary["release_date"] as? String
         runTime = dictionary["runtime"] as? Int
         

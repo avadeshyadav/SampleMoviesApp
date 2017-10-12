@@ -225,9 +225,4 @@ class NetworkServicesTests: XCTestCase {
             XCTAssertTrue(allPassedParams.keys.count == 0, "Network Architecture unable to encode all post paramters")
         }
     }
-
-    
-    
-    
-    
 }
